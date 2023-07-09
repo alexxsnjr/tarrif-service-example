@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+spring:
+  h2:
+    console:
+      path: /h2-console
+      settings.web-allow-others: false
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+  datasource:
+    url: jdbc:h2:mem:pricedb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
