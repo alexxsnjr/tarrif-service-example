@@ -1,5 +1,6 @@
 package com.alexxsnjr.tariffservice.infrastructure.rest;
 
+import com.alexxsnjr.tariffservice.application.PriceResponse;
 import java.util.Date;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,7 +26,7 @@ public class GetPriceResource {
         PriceResponse tariff = PriceResponse.builder()
             .productId(productId)
             .brandId(brandId)
-            .tariff(2.0)
+            .tariffId(2L)
             .finalPrice(2.0)
             .startDate(new Date())
             .endDate(new Date())

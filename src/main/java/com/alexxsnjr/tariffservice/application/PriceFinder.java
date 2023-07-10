@@ -22,17 +22,8 @@ public class PriceFinder {
             .max(Comparator.comparingLong(x -> x.getPriority().getPriority()))
             .orElseThrow(() -> new NotAvailableTariff("There is no tariff available"));
 
-        return toResponse(availableTariff);
+        return PriceResponse.of(availableTariff);
     }
 
-    private PriceResponse toResponse(Tariff availableTariff) {
-        return PriceResponse.builder()
-            .tariffId(availableTariff.getPriceId().getId())
-            .productId(availableTariff.getProductId().getId())
-            .brandId(availableTariff.getBrandId().getId())
-            .startDate(availableTariff.getPriceDate().getStartDate())
-            .endDate(availableTariff.getPriceDate().getEndDate())
-            .finalPrice(availableTariff.getPrice().getAmount())
-            .build();
-    }
+
 }
