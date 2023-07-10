@@ -1,5 +1,7 @@
 package com.alexxsnjr.tariffservice.infrastructure.persistence;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,16 +14,21 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
 public class PriceEntity {
+
+    @Id
+    private Long priceList;
 
     private Long brandId;
     private Date startDate;
     private Date endDate;
-    private Long priceList;
     private Long productId;
     private Long priority;
     private Double price;
     private String currency;
     private Date lastUpdate;
     private String lastUpdateBy;
+    private Long id;
+
 }

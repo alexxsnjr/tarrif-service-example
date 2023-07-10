@@ -9,7 +9,9 @@ import com.alexxsnjr.tariffservice.domain.ProductId;
 import com.alexxsnjr.tariffservice.domain.Tariff;
 import com.alexxsnjr.tariffservice.infrastructure.persistence.PriceEntity;
 import java.util.Date;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PriceMapper {
 
     public Tariff toDomain(PriceEntity entity) {
