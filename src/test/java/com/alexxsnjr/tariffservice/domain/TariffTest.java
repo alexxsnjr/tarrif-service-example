@@ -1,5 +1,6 @@
 package com.alexxsnjr.tariffservice.domain;
 
+import com.alexxsnjr.tariffservice.TariffFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,12 @@
-package com.alexxsnjr.tariffservice.domain;
+package com.alexxsnjr.tariffservice;
 
+import com.alexxsnjr.tariffservice.domain.BrandId;
+import com.alexxsnjr.tariffservice.domain.Price;
+import com.alexxsnjr.tariffservice.domain.PriceDate;
+import com.alexxsnjr.tariffservice.domain.PriceId;
+import com.alexxsnjr.tariffservice.domain.Priority;
+import com.alexxsnjr.tariffservice.domain.ProductId;
+import com.alexxsnjr.tariffservice.domain.Tariff;
 import java.util.Date;
 
 public class TariffFactory {
@@ -26,6 +33,24 @@ public class TariffFactory {
             .priceDate(priceDate)
             .price(price)
             .priority(priority)
+            .build();
+    }
+
+    public static Tariff givenTariffWithLowPriority() {
+        PriceId priceId = givenPriceId();
+        ProductId productId = givenProductId();
+        BrandId brandId = givenBrandId();
+        PriceDate priceDate = givenPriceDate();
+        Price price = givenPrice();
+        Priority lowPriority = givenLowPriority();
+
+        return Tariff.builder()
+            .priceId(priceId)
+            .productId(productId)
+            .brandId(brandId)
+            .priceDate(priceDate)
+            .price(price)
+            .priority(lowPriority)
             .build();
     }
 
@@ -68,4 +93,11 @@ public class TariffFactory {
             .priority(DEFAULT_PRIORITY)
             .build();
     }
+
+    private static Priority givenLowPriority() {
+        return Priority.builder()
+            .priority(0L)
+            .build();
+    }
+
 }
