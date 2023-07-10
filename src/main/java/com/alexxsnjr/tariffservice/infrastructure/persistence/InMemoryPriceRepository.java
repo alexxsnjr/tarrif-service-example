@@ -20,9 +20,11 @@ public class InMemoryPriceRepository implements TariffRepository {
 
     @Override
     public List<Tariff> findPriceByProductBrandAndDate(Long productId, Long brandId, Date date) {
-        log.info("search price by productId:" + productId +" brandId: " + brandId + " and date: " + date.toString() );
+        log.info("search price by productId:" + productId + " brandId: " + brandId + " and date: "
+            + date.toString());
         return jpaRepository
-            .findByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqual(productId, brandId, date, date)
+            .findByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqual(productId,
+                brandId, date, date)
             .stream()
             .map(mapper::toDomain)
             .collect(Collectors.toList());

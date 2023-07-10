@@ -33,7 +33,7 @@ public class PriceFactory {
 
     public static List<PriceEntity> givenPriceEntityList() {
         PriceEntity priceEntity1 = givenPriceEntity(1L, DEFAULT_PRODUCT_ID_VALUE, DEFAULT_BRAND_ID_VALUE, new Date(), new Date());
-        PriceEntity priceEntity2 = givenPriceEntity(2L, DEFAULT_PRODUCT_ID_VALUE, DEFAULT_BRAND_ID_VALUE, new Date(), new Date());;
+        PriceEntity priceEntity2 = givenPriceEntity(2L, DEFAULT_PRODUCT_ID_VALUE, DEFAULT_BRAND_ID_VALUE, new Date(), new Date());
 
         return List.of(priceEntity1, priceEntity2);
     }

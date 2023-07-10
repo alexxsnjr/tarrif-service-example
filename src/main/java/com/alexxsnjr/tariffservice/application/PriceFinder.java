@@ -1,7 +1,6 @@
 package com.alexxsnjr.tariffservice.application;
 
 import com.alexxsnjr.tariffservice.domain.NotAvailableTariff;
-import com.alexxsnjr.tariffservice.domain.Tariff;
 import com.alexxsnjr.tariffservice.domain.TariffRepository;
 import java.util.Comparator;
 import java.util.Date;
