@@ -5,9 +5,7 @@ import com.alexxsnjr.tariffservice.domain.TariffRepository;
 import java.util.Comparator;
 import java.util.Date;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@Service
 @RequiredArgsConstructor
 public class PriceFinder {
 
@@ -15,6 +13,7 @@ public class PriceFinder {
 
     public PriceResponse findPriceByProductBrandAndDate(Long productId, Long brandId, Date date)
         throws NotAvailableTariff {
+
         var availableTariff = repository
             .findPriceByProductBrandAndDate(productId, brandId, date)
             .stream()
