@@ -7,6 +7,7 @@ public class TariffFactory {
     public static final Long DEFAULT_PRICE_ID_VALUE = 1L;
     public static final Long DEFAULT_PRODUCT_ID_VALUE = 2L;
     public static final Long DEFAULT_BRAND_ID_VALUE = 3L;
+    public static final Long DEFAULT_PRIORITY = 1L;
     public static final Double DEFAULT_PRICE_AMOUNT = 10.0;
     public static final String DEFAULT_PRICE_CURRENCY = "EUR";
 
@@ -16,6 +17,7 @@ public class TariffFactory {
         BrandId brandId = givenBrandId();
         PriceDate priceDate = givenPriceDate();
         Price price = givenPrice();
+        Priority priority = givenPriority();
 
         return Tariff.builder()
             .priceId(priceId)
@@ -23,6 +25,7 @@ public class TariffFactory {
             .brandId(brandId)
             .priceDate(priceDate)
             .price(price)
+            .priority(priority)
             .build();
     }
 
@@ -57,6 +60,12 @@ public class TariffFactory {
         return Price.builder()
             .amount(DEFAULT_PRICE_AMOUNT)
             .currency(DEFAULT_PRICE_CURRENCY)
+            .build();
+    }
+
+    private static Priority givenPriority() {
+        return Priority.builder()
+            .priority(DEFAULT_PRIORITY)
             .build();
     }
 }

@@ -14,5 +14,6 @@ class TariffTest {
         Assertions.assertEquals(TariffFactory.DEFAULT_BRAND_ID_VALUE, tariff.getBrandId().getId());
         Assertions.assertEquals(TariffFactory.DEFAULT_PRICE_AMOUNT, tariff.getPrice().getAmount());
         Assertions.assertEquals(TariffFactory.DEFAULT_PRICE_CURRENCY, tariff.getPrice().getCurrency());
+        Assertions.assertEquals(TariffFactory.DEFAULT_PRIORITY, tariff.getPriority().getPriority());
     }
 }

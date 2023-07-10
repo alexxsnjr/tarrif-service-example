@@ -12,4 +12,5 @@ public class Tariff {
     private BrandId brandId;
     private PriceDate priceDate;
     private Price price;
+    private Priority priority;
 }
