@@ -18,7 +18,7 @@ public class PriceFinder {
         var availableTariff = repository
             .findPriceByProductBrandAndDate(productId, brandId, date)
             .stream()
-            .max(Comparator.comparingLong(x -> x.getPriority().getPriority()))
+            .max(Comparator.naturalOrder())
             .orElseThrow(() -> new NotAvailableTariff("There is no tariff available"));
 
         return PriceResponse.of(availableTariff);

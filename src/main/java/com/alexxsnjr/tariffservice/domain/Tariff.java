@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Builder
 @Getter
-public class Tariff {
+public class Tariff implements Comparable<Tariff>{
 
     private PriceId priceId;
     private ProductId productId;
@@ -13,4 +13,9 @@ public class Tariff {
     private PriceDate priceDate;
     private Price price;
     private Priority priority;
+
+    @Override
+    public int compareTo(Tariff other) {
+        return Long.compare(this.priority.getPriority(), other.priority.getPriority());
+    }
 }
