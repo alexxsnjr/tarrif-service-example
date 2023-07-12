@@ -40,18 +40,18 @@ class PriceFinderTest {
 
         List<Tariff> tariffs = Collections.singletonList(availableTariff);
 
-        when(repository.findPriceByProductBrandAndDate(productId, brandId, date)).thenReturn(
-            tariffs);
+        when(repository.findPriceByProductBrandAndDate(productId, brandId, date))
+            .thenReturn(tariffs);
 
-        PriceResponse result = priceFinder.findPriceByProductBrandAndDate(productId, brandId, date);
+        var result = priceFinder.findPriceByProductBrandAndDate(productId, brandId, date);
 
-        Assertions.assertEquals(availableTariff.getPriceId().getId(), result.getTariffId());
-        Assertions.assertEquals(productId, result.getProductId());
-        Assertions.assertEquals(brandId, result.getBrandId());
+        Assertions.assertEquals(availableTariff.getPriceId().getId(), result.getPriceId().getId());
+        Assertions.assertEquals(productId, result.getProductId().getId());
+        Assertions.assertEquals(brandId, result.getBrandId().getId());
         Assertions.assertEquals(availableTariff.getPriceDate().getStartDate(),
-            result.getStartDate());
-        Assertions.assertEquals(availableTariff.getPriceDate().getEndDate(), result.getEndDate());
-        Assertions.assertEquals(availableTariff.getPrice().getAmount(), result.getFinalPrice());
+            result.getPriceDate().getStartDate());
+        Assertions.assertEquals(availableTariff.getPriceDate().getEndDate(), result.getPriceDate().getEndDate());
+        Assertions.assertEquals(availableTariff.getPrice().getAmount(), result.getPrice().getAmount());
     }
 
     @Test
@@ -85,15 +85,15 @@ class PriceFinderTest {
         when(repository.findPriceByProductBrandAndDate(productId, brandId, date)).thenReturn(
             tariffs);
 
-        PriceResponse result = priceFinder.findPriceByProductBrandAndDate(productId, brandId, date);
+        var result = priceFinder.findPriceByProductBrandAndDate(productId, brandId, date);
 
-        Assertions.assertEquals(highPriorityTariff.getPriceId().getId(), result.getTariffId());
-        Assertions.assertEquals(productId, result.getProductId());
-        Assertions.assertEquals(brandId, result.getBrandId());
+        Assertions.assertEquals(highPriorityTariff.getPriceId().getId(), result.getPriceId().getId());
+        Assertions.assertEquals(productId, result.getProductId().getId());
+        Assertions.assertEquals(brandId, result.getBrandId().getId());
         Assertions.assertEquals(highPriorityTariff.getPriceDate().getStartDate(),
-            result.getStartDate());
+            result.getPriceDate().getStartDate());
         Assertions.assertEquals(highPriorityTariff.getPriceDate().getEndDate(),
-            result.getEndDate());
-        Assertions.assertEquals(highPriorityTariff.getPrice().getAmount(), result.getFinalPrice());
+            result.getPriceDate().getEndDate());
+        Assertions.assertEquals(highPriorityTariff.getPrice().getAmount(), result.getPrice().getAmount());
     }
 }

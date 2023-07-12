@@ -1,4 +1,4 @@
-package com.alexxsnjr.tariffservice.application;
+package com.alexxsnjr.tariffservice.infrastructure.rest;
 
 import com.alexxsnjr.tariffservice.domain.Tariff;
 import java.util.Date;

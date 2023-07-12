@@ -1,6 +1,7 @@
 package com.alexxsnjr.tariffservice.application;
 
 import com.alexxsnjr.tariffservice.domain.NotAvailableTariff;
+import com.alexxsnjr.tariffservice.domain.Tariff;
 import com.alexxsnjr.tariffservice.domain.TariffRepository;
 import java.util.Comparator;
 import java.util.Date;
@@ -11,7 +12,7 @@ public class PriceFinder {
 
     private final TariffRepository repository;
 
-    public PriceResponse findPriceByProductBrandAndDate(Long productId, Long brandId, Date date)
+    public Tariff findPriceByProductBrandAndDate(Long productId, Long brandId, Date date)
         throws NotAvailableTariff {
 
         var availableTariff = repository
@@ -21,7 +22,7 @@ public class PriceFinder {
             .orElseThrow(() -> new NotAvailableTariff("There is no tariff available",
                 productId, brandId, date));
 
-        return PriceResponse.of(availableTariff);
+        return availableTariff;
     }
 
 

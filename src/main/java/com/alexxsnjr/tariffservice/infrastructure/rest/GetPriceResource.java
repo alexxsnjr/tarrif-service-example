@@ -1,7 +1,6 @@
 package com.alexxsnjr.tariffservice.infrastructure.rest;
 
 import com.alexxsnjr.tariffservice.application.PriceFinder;
-import com.alexxsnjr.tariffservice.application.PriceResponse;
 import com.alexxsnjr.tariffservice.domain.NotAvailableTariff;
 import java.util.Date;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +28,7 @@ public class GetPriceResource {
         @RequestParam("brandId") Long brandId) throws NotAvailableTariff {
         log.info("Get prices for productId: " + productId);
         var tariff = finder.findPriceByProductBrandAndDate(productId, brandId, date);
-        return new ResponseEntity<>(tariff, HttpStatus.OK);
+        return new ResponseEntity<>(PriceResponse.of(tariff), HttpStatus.OK);
     }
 }
 
