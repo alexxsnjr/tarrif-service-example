@@ -25,7 +25,8 @@ class GetPriceResourceIT {
         "2020-06-15 10:00:00, 30.5",
         "2020-06-16 21:00:00, 38.95"
     })
-    void testGetPrices_shouldReturnCorrectTariffAndHttpOk(String dateString, double expectedPrice) throws Exception {
+    void testGetPrices_shouldReturnCorrectTariffAndHttpOk(String dateString, double expectedPrice)
+        throws Exception {
         Long productId = 35455L;
         Long brandId = 1L;
 
@@ -39,6 +40,58 @@ class GetPriceResourceIT {
             .andExpect(MockMvcResultMatchers.jsonPath("$.brandId").value(brandId))
             .andExpect(MockMvcResultMatchers.jsonPath("$.finalPrice").value(expectedPrice));
 
+    }
+
+
+    @ParameterizedTest
+    @CsvSource({
+        ", 35455, 1, Required request parameter 'date' for method parameter type Date is not present",
+        "2020-06-14 10:00:00, , 1, Required request parameter 'productId' for method parameter type Long is not present",
+        "2020-06-14 10:00:00, 35455, ,Required request parameter 'brandId' for method parameter type Long is not present"
+    })
+    void testGetPrices_shouldReturnBadRequest(String dateString, String productId, String brandId,
+        String result) throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/prices")
+                .param("date", dateString)
+                .param("productId", productId)
+                .param("brandId", brandId)
+                .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.status().isBadRequest())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.errors[1]").value(result));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "2020-06-14 10:00:00, 'aaa', 1",
+        "2020-06-14 10:00:00, 35455, 'bbb'"
+    })
+    void testGetPrices_shouldReturnBadRequestForInvalidParameters(String dateString,
+        String productId, String brandId) throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/prices")
+                .param("date", dateString)
+                .param("productId", productId)
+                .param("brandId", brandId)
+                .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.status().isBadRequest())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.errors[1]").isString());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "2020-06-14 10:00:00 CEST 2020, 35455, 5",
+        "2020-06-14 10:00:00 CEST 2020, 99999, 1"
+    })
+    void testGetPrices_shouldReturnNotFoundForNotAvailableTariff(String dateString,
+        String productId, String brandId) throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/prices")
+                .param("date", dateString)
+                .param("productId", productId)
+                .param("brandId", brandId)
+                .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.status().isNotFound())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.errors[1]")
+                .value("No Tariff found for product " + productId + " and brand " + brandId
+                    + " on Sun Jun 14 10:00:00 CEST 2020"));
     }
 
 }

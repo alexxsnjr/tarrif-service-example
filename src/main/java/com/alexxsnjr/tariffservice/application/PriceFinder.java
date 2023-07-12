@@ -18,7 +18,8 @@ public class PriceFinder {
             .findPriceByProductBrandAndDate(productId, brandId, date)
             .stream()
             .max(Comparator.naturalOrder())
-            .orElseThrow(() -> new NotAvailableTariff("There is no tariff available"));
+            .orElseThrow(() -> new NotAvailableTariff("There is no tariff available",
+                productId, brandId, date));
 
         return PriceResponse.of(availableTariff);
     }
