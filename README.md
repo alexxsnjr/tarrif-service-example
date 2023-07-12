@@ -45,8 +45,6 @@ Clone the project repository:
 
 ```bash
 git clone https://github.com/alexxsnjr/tarrif-service-example.git
-
-
 ```
 Compile and pass the test
 ```bash
@@ -59,6 +57,13 @@ Run the project:
 ./mvnw spring-boot:run
 ```
 The service will be available at http://localhost:8080.
+
+## Execution example
+
+```bash
+curl 'http://localhost:8080/api/prices?date=2020-07-14%2010:00:00&productId=35455&brandId=1' \
+--compressed
+```
 
 ## Running Tests
 The project includes unit tests and integration tests. Here's how to run them:
@@ -82,7 +87,7 @@ Run the following command to execute the integration tests and unit test:
 #### Get tarrif by product, brand and date
 
 ```http
-  GET /api/prices?{date}&{productId}&{brandId}
+  GET /api/prices?date={date}&productId={productId}&brandId={brandId}
 ```
 
 | Parameter | Type     | Description                |
